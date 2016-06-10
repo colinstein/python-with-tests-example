@@ -1,11 +1,3 @@
-# An example program
-After reading our test cases we discover our readme is out of date. Testing
-forced us to consider the 'floating point' or 'rational number' case and we
-decided to handle it. We should update our documentation because it says they
-do not work and that isn't true.
-
----
-
 # My Adder
 This program adds two numbers. You pass in some integegers as command line
 arguments and it'll tell you what the sum of them is with plane English.
