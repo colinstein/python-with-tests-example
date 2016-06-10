@@ -1,21 +1,51 @@
 # An Example Program
-Now we've actually done the extraction of our method into a reusable library.
-You can find the method in [adder/adder.py](adder/adder.py), we just cut and
-pasted it over there. If you had a bunch of related methods you could put them
-all into that file. For example, you might have an `addFloat()` or `addHex()`
-method in that file too. Try to group related methods into one file.
+The last thing we need to do is write some automated testing. Testing does three
+things for us:
 
-We also added [adder/__init__.py](adder/__init__.py) which pulls in the rest of
-our library in. You can treat this as boilerplate. Just add one line (like the
-first) for each file in the folder that contains code you want to include.
+  1. It's another form of documentation that explicitly spells out the behaviour
+     of your code to other programmers. It helps to know what is explicitly
+     intended affects and which are coincidental.
 
-The `adder` folder is now a library that we could easily pull into other
-programs. If you find yourself writing similar functionality in multiple
-programs, you might want to pull this library out into it's own repository. We
-don't have to do that now, but if you'd like to then just ask for help.
+  2. It makes it easier to verify that you didn't break your code when making
+     changes. Good tests will check the full set of functionality in your code
+     so you can be confident you didn't accidentally break them.
 
-We modified [myadder.py](myadder.py) to so that it calls the library we created
-and calls our `addI()` method within it.
+  3. It lets you write code more quickly. An automatic test can verify your code
+     much more quickly than manual tests which means you get work done faster.
+
+To write tests all we did was add the [adder/test_adder.py](adder/test_adder.py)
+file and define a few cases. The basic idea is to call the methods in your
+library with various inputs and ensure you get the expected outputs. If you
+expect the method to fail in certain ways (like adding two strings) then write
+a test that ensure the failure happens. The unittest framework is part of Python
+so the [official documentation for Python Unittest](https://docs.python.org/2.7/library/unittest.html)
+is worth taking a look at.
+
+In our sample test we check the 'happy path' (add two numbers), the a mostly
+clean path (number and string that can be made a number), and an 'ugly' path
+(two strings). We also test negative numbers work and that rational numbers
+are rounded off (always floored) and added too.
+
+Some things should always fail. "strings" that can't be added if they can't be
+converted into integers so in those cases we ensure that an exception is raised.
+Testing for failures is how other programmers will know that sometimes a 'crash'
+is expected. Crashing isn't always bad: it prevents your program from having
+undefined behaviour which may cause it to compute invalid results or worse:
+destroy the computer or data on it.
+
+The nice part about writing our test this way is that there's a standard way to
+test run them:
+
+    $ python -m unittest discover
+
+That will automatically find and run all tests. When you import a library that
+you have used in the past you can use it to verify that it works. When you make
+changes you can run the tests to ensure your program still works correctly. When
+you are unsure how to use a library or how it will behave in some edge-case you
+can read the tests to see what it is supposed to do.
+
+Tests are awesome.  They're so good we also updated our readme to tell everyone
+how they can run the tests that we wrote.
 
 ---
 
@@ -41,3 +71,13 @@ should be present on any reaosnably popular UNIX-like operating system.
 
 ## Zero to Running
 All you need to do is clone the repository and run the `./myadder.py` program.
+
+## Running Tests
+The standard unit testing framework is used so that you can run tests like this:
+
+    $ python -m unittest discover
+
+Altneratively, you can run tests for a specific library by specifying it:
+
+    $ python -m unittest discover adder
+
