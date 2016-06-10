@@ -1,17 +1,23 @@
 #!/usr/bin/env python
-import sys
+from sys import argv
 
-if len(sys.argv) < 3:
-  sys.stderr.write("Bad Usage. Try {} 2 9\n".format(sys.argv[0]))
-  exit(1)
+""" Given two things, add them as if they're integers """
+""" May raise a ValueError if they cannot be added as such """
+def addI(oppA, oppB):
+  return int(oppA) + int(oppB)
 
-try:
-  oppA = int(sys.argv[1])
-  oppB = int(sys.argv[2])
-except ValueError:
-  sys.stderr.write("Both arguments must be integers.\n")
-  exit(1)
+""" This is our main entry point, it handles extracting parameters and """
+""" ensuring that they get passed on to our 'worker' method. """
+def main():
+  if len(argv) < 3:
+    sys.stderr.write("Bad Usage. Try {} 2 9\n".format(argv[0]))
+    exit(1)
+  try:
+    oppSum = addI(argv[2], argv[1])
+    print("The sum of {} and {} is {}.".format(argv[1], argv[2], oppSum))
+  except ValueError:
+    sys.stderr.write("Both arguments must be integers.\n")
+    exit(1)
 
-oppSum = oppA + oppB
-
-print("The sum of {} and {} is {}.".format(oppA, oppB, oppSum))
+if __name__ == "__main__":
+  main()

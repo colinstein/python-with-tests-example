@@ -1,15 +1,20 @@
 # An Example Program
-Take a look at the [myadder.py](myadder.py) to see the program that we wrote. It
-doesn't do very much but we can use it as an example to figure out how we can
-make it more useful to more people.
+Take a look at the [myadder.py](myadder.py) to see the program that we changed.
+In this program we did some minor refactors. The first is that we moved the
+"body" of our program into a function called `main()` and then at the very end
+that method is called if our program is being run; that's the last 2 lines. That
+change helps make the code easier to read becuase it means the "entry point"—or
+the first bit of code that gets run—is easily found. This is a convention that
+Python programmers will expect you to follow so we do it.
 
-Once you've seen what it does, consider the readme file below. You should try
-to always have a readme file like this to explain to people how it works and
-what additional setup might be required to make it work.
+The second thing we did is move our "core logic" (adding two things) into a
+function called `addI()` that does the work. There's still a bit of code for
+parsing the command and handling failures but the important bit of our program
+is now an isolated unit. We took this step to make our method easier to extract
+into a package that can be included in other programs. If you ever need to add
+two things together in another program you can just use the package.
 
-Your readme doesn't have to be complicated, it just needs to hit the major
-points so that a new person will know what it does and how to use the program
-the first time they see it.
+We also added some comments to make it a little more clear what our methods do.
 
 ---
 
