@@ -1,9 +1,18 @@
+# An example program
+After reading our test cases we discover our readme is out of date. Testing
+forced us to consider the 'floating point' or 'rational number' case and we
+decided to handle it. We should update our documentation because it says they
+do not work and that isn't true.
+
+---
+
 # My Adder
 This program adds two numbers. You pass in some integegers as command line
 arguments and it'll tell you what the sum of them is with plane English.
 
-It does not add strings, floating point numbers, numbers that aren't in base-10
-or any other weird nonsense. Numbers that are very large (±2 billion) may fail.
+It will add floating point numbers by 'flooring' them (3.999 turns into 3, not
+4), but will only add base-10 numbers, not hexidecimal or complex numbers, nor
+numbers in some other strange base. Negative numbers are correctly handled too.
 
 ## Description
 After installing the program you can use it like this:
